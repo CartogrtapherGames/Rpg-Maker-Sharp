@@ -55,9 +55,9 @@ public class GameParty : GameUnit<GameActor>, IBattleUnit
   }
   
   
-  public override GameActor[] Members()
+  public override List<GameActor> Members()
   {
-    return InBattle() ? BattleMembers().ToArray() : AllMembers().ToArray();
+    return InBattle() ? BattleMembers() : AllMembers();
   }
 
   public List<GameActor> AllMembers()

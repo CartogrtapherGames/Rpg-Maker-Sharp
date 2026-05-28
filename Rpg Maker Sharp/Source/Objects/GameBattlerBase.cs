@@ -344,7 +344,7 @@ public abstract class GameBattlerBase
   }
 
   public int[] AllIcons => StateIcons.Concat(BuffIcons).ToArray();
-  public IEnumerable<IWithTraits> TraitObjects => States;
+  public virtual IEnumerable<IWithTraits> TraitObjects() => States;
   public TraitData[] AllTraits => TraitObjects.SelectMany(obj => obj.Traits).ToArray();
 
   public TraitData[] Traits(int code)
@@ -400,7 +400,7 @@ public abstract class GameBattlerBase
     return 0;
   }
 
-  public int ParamPlus(int paramId)
+  public virtual int ParamPlus(int paramId)
   {
     return paramPlus[paramId];
   }
@@ -491,9 +491,9 @@ public abstract class GameBattlerBase
     return StateResistSet().Contains(stateId);
   }
 
-  public int[] AttackElements()
+  public virtual List<int> AttackElements()
   {
-    return TraitsSet((int)TraitType.AttackElement);
+    return TraitsSet((int)TraitType.AttackElement).ToList();
   }
 
   public int[] AttackStates()
@@ -769,7 +769,7 @@ public abstract class GameBattlerBase
     return (double)tp / MaxTp();
   }
 
-  public void Hide()
+  public virtual void Hide()
   {
     hidden = true;
   }

@@ -19,7 +19,7 @@ public abstract class GameUnit<T> where T : GameBattler
     return inBattle;
   }
 
-  public abstract T[] Members();
+  public abstract List<T> Members();
 
   public List<T> AliveMembers() => Members().Where(m => m.IsAlive()).ToList();
   public List<T> DeadMembers() => Members().Where(m => m.IsDead()).ToList();
@@ -37,7 +37,7 @@ public abstract class GameUnit<T> where T : GameBattler
   {
     var members = Members();
     var sum = members.Sum(m => m.Agi);
-    return Math.Max(1, sum / Math.Max(1, members.Length));
+    return Math.Max(1, sum / Math.Max(1, members.Count));
   }
 
   public double TgrSum()
